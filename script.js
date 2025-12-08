@@ -1,67 +1,56 @@
-import {stylesRoot} from "hrenpack_js";
-
-type ButtonArray = NodeListOf<HTMLButtonElement>
-
-function getButtonColor(button: HTMLButtonElement, isHoverOrActive: boolean = false) {
+import { stylesRoot } from "hrenpack_js";
+function getButtonColor(button, isHoverOrActive = false) {
     if (button.classList.contains('btn-hren-ahren')) {
         return isHoverOrActive
             ? stylesRoot.getPropertyValue('--hrenpack-button-hover-color')
             : stylesRoot.getPropertyValue('--hrenpack-background');
-    } else {
+    }
+    else {
         return isHoverOrActive
             ? stylesRoot.getPropertyValue('--hrenpack-button-hover-color')
             : stylesRoot.getPropertyValue('--hrenpack-foreground');
     }
 }
-
-function getButtonTextColor(button: HTMLButtonElement) {
+function getButtonTextColor(button) {
     return button.classList.contains('btn-hren-ahren')
         ? stylesRoot.getPropertyValue('--hrenpack-foreground')
         : stylesRoot.getPropertyValue('--hrenpack-background');
 }
-
 function btn_hren_press() {
-    const buttons: ButtonArray = document.querySelectorAll('.btn-hren');
+    const buttons = document.querySelectorAll('.btn-hren');
     buttons.forEach(button => {
-        // Инициализация начальных стилей
         button.style.backgroundColor = getButtonColor(button);
         button.style.color = getButtonTextColor(button);
-
-        button.addEventListener('mousedown', function() {
+        button.addEventListener('mousedown', function () {
             button.style.backgroundColor = stylesRoot.getPropertyValue('--hrenpack-button-pressed-color');
             button.style.color = getButtonTextColor(button);
         });
-
-        button.addEventListener('mouseover', function() {
+        button.addEventListener('mouseover', function () {
             button.style.backgroundColor = getButtonColor(button, true);
             button.style.color = getButtonTextColor(button);
         });
-
-        button.addEventListener('mouseout', function() {
+        button.addEventListener('mouseout', function () {
             button.style.backgroundColor = getButtonColor(button);
             button.style.color = getButtonTextColor(button);
         });
-
-        button.addEventListener('mouseup', function() {
+        button.addEventListener('mouseup', function () {
             button.style.backgroundColor = getButtonColor(button, true);
             button.style.color = getButtonTextColor(button);
         });
-
-        button.addEventListener('mouseleave', function() {
+        button.addEventListener('mouseleave', function () {
             button.style.backgroundColor = getButtonColor(button);
             button.style.color = getButtonTextColor(button);
         });
     });
 }
-
-export function btn_hren_update() {
-    const buttons: ButtonArray = document.querySelectorAll('.btn-hren')
+function btn_hren_update() {
+    const buttons = document.querySelectorAll('.btn-hren');
     buttons.forEach(button => {
         button.style.backgroundColor = getButtonColor(button);
         button.style.color = getButtonTextColor(button);
-    })
+    });
 }
-
 window.onload = function () {
-    btn_hren_press()
-}
+    btn_hren_press();
+};
+//# sourceMappingURL=script.js.map

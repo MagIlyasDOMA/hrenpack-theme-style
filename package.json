@@ -1,7 +1,6 @@
 {
   "name": "hrenpack-theme-style",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "2.0.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MagIlyasDOMA/hrenpack-theme-style.git"
@@ -10,7 +9,7 @@
     "hrenpack",
     "frontend",
     "css",
-	"bootstrap",
+    "bootstrap",
     "dark-theme"
   ],
   "author": "MagIlyasDOMA",
@@ -21,9 +20,10 @@
   "homepage": "https://github.com/MagIlyasDOMA/hrenpack-theme-style#readme",
   "description": "",
   "dependencies": {
-	"hrenpack_js": "^1.0.1"
+    "bootstrap": "^5.3.8",
+    "hrenpack_js": "^2.0.5"
   },
   "devDependencies": {
-	"typescript": "^5.9.3"
+    "typescript": "^5.9.3"
   }
 }
