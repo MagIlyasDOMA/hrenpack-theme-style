@@ -1,5 +1,7 @@
-import {getCookie, getScriptSite, getSystemTheme, setCookie} from "hrenpack_js";
-import {btn_hren_update} from "./script";
+declare function getCookie(name: string): string | null;
+declare function setCookie(name: string, value: string, days?: number | null, path?: string): void;
+declare function getScriptSite(script: HTMLScriptElement): string;
+declare function getSystemTheme(): null | string;
 
 const tt_button: HTMLButtonElement = document.querySelector('#hrenpack-toggle-theme')!;
 const stylesheet: HTMLLinkElement = document.querySelector('#hrenpack-theme-stylesheet')!;

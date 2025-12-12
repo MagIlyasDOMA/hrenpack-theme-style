@@ -1,4 +1,4 @@
-import {stylesRoot} from "hrenpack_js";
+declare const stylesRoot: CSSStyleDeclaration;
 
 type ButtonArray = NodeListOf<HTMLButtonElement>
 
@@ -54,7 +54,7 @@ function btn_hren_press() {
     });
 }
 
-export function btn_hren_update() {
+function btn_hren_update() {
     const buttons: ButtonArray = document.querySelectorAll('.btn-hren')
     buttons.forEach(button => {
         button.style.backgroundColor = getButtonColor(button);

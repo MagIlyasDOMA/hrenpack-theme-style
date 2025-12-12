@@ -1,4 +1,4 @@
-import { stylesRoot } from "hrenpack_js";
+"use strict";
 function getButtonColor(button, isHoverOrActive = false) {
     if (button.classList.contains('btn-hren-ahren')) {
         return isHoverOrActive

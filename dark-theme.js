@@ -1,4 +1,4 @@
-import { getCookie, getScriptSite, getSystemTheme, setCookie } from "hrenpack_js";
+"use strict";
 const tt_button = document.querySelector('#hrenpack-toggle-theme');
 const stylesheet = document.querySelector('#hrenpack-theme-stylesheet');
 const cookieTheme = getCookie?.('theme'), lsTheme = localStorage.getItem('theme');

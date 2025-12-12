@@ -17,6 +17,8 @@ npm install hrenpack-theme-style
 ```html
 <!-- Обязательно именно этот id! -->
 <link id="hrenpack-theme-stylesheet" rel="stylesheet" href="node_modules/hrenpack-theme-style/style.css">
+<!-- Или, если не хотите устанавливать пакет -->
+<link id="hrenpack-theme-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hrenpack-theme-style/style.css">
 ```
 
 ### Подключение скриптов
@@ -37,7 +39,7 @@ npm install hrenpack-theme-style
 </div>
 ```
 
-Кнопка будет автоматически обработана скриптом `dark-theme.ts`.
+Кнопка будет автоматически обработана скриптом `dark-theme.js`.
 
 ## Компоненты
 ### Стили
@@ -53,6 +55,8 @@ npm install hrenpack-theme-style
 - `dark-theme.js` — управление переключением тем, сохранение выбора в `localStorage` и cookies
 
 - `input-reversed.js` — утилита для обработки порядка элементов `input` и `label` внутри формы
+
+- `form.js` - обработка формы
 
 ### CSS-переменные
 Пакет использует CSS-переменные для управления цветами. Основные переменные:
