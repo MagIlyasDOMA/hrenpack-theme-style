@@ -1,6 +1,6 @@
 {
   "name": "hrenpack-theme-style",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MagIlyasDOMA/hrenpack-theme-style.git"
@@ -20,7 +20,10 @@
   "homepage": "https://github.com/MagIlyasDOMA/hrenpack-theme-style#readme",
   "description": "",
   "devDependencies": {
-    "typescript": "^5.9.3",
-    "hrenpack_js": "^2.0.5"
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "hrenpack_js": "^3.1.0"
   }
 }

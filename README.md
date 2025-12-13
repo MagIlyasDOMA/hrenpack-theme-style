@@ -15,6 +15,11 @@ npm install hrenpack-theme-style
 Добавьте следующие стили в ваш HTML-файл:
 
 ```html
+<!-- Подключите Bootstrap -->
+<link rel="stylesheet" href="node_modules/bootstrap/dist/bootstrap.css">
+<!-- Или -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+
 <!-- Обязательно именно этот id! -->
 <link id="hrenpack-theme-stylesheet" rel="stylesheet" href="node_modules/hrenpack-theme-style/style.css">
 <!-- Или, если не хотите устанавливать пакет -->
@@ -23,11 +28,16 @@ npm install hrenpack-theme-style
 
 ### Подключение скриптов
 ```html
-<!-- Подключите основной скрипт темы -->
-<script type="module" src="node_modules/hrenpack-theme-style/script.js"></script>
+<!-- Подключите зависимости -->
+<script src="node_modules/hrenpack_js/url.js"></script>
+<script src="node_modules/hrenpack_js/system.js"></script>
+<script src="node_modules/hrenpack_js/auto.js"></script>
+<script src="node_modules/hrenpack_js/cookie.js"></script>
 
+<!-- Подключите основной скрипт темы -->
+<script src="node_modules/hrenpack-theme-style/script.js"></script>
 <!-- Для работы темной темы -->
-<script type="module" src="node_modules/hrenpack-theme-style/dark-theme.js"></script>
+<script src="node_modules/hrenpack-theme-style/dark-theme.js"></script>
 ```
 
 ### Добавление кнопки переключения темы
