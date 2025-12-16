@@ -1,0 +1,24 @@
+{
+	"base": [
+		"style.css",
+		"script.js"
+	],
+	"dark_theme": [
+		"style.css",
+		"script.js",
+		"dark-theme.js"
+	],
+	"form": [
+		"style.css",
+		"script.js",
+		"input-reversed.js",
+		"form.js"
+	],
+	"full": [
+		"style.css",
+		"script.js",
+		"dark-theme.js",
+		"input-reversed.js",
+		"form.js"
+	]
+}

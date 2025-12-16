@@ -33,3 +33,6 @@ examples/
 *.tmp
 .DS_Store
 Thumbs.db
+
+# Файлы API для GitHub
+config-api.json
