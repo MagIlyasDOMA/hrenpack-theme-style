@@ -5,6 +5,9 @@
 	],
 	"js": [
 	  "script.js"
+	],
+	"dependencies": [
+	  "auto.js"
 	]
   },
   "dark_theme": {
@@ -14,6 +17,12 @@
 	"js": [
 	  "script.js",
 	  "dark-theme.js"
+	],
+	"dependencies": [
+	  "auto.js",
+	  "url.js",
+	  "system.js",
+	  "cookie.js"
 	]
   },
   "form": {
@@ -24,6 +33,10 @@
 	  "script.js",
 	  "input-reversed.js",
 	  "form.js"
+	],
+	"dependencies": [
+	  "auto.js",
+	  "styles.js"
 	]
   },
   "full": {
@@ -35,6 +48,13 @@
 	  "dark-theme.js",
 	  "input-reversed.js",
 	  "form.js"
+	],
+	"dependencies": [
+	  "auto.js",
+	  "url.js",
+	  "system.js",
+	  "cookie.js",
+	  "styles.js"
 	]
   }
 }
