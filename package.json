@@ -1,6 +1,6 @@
 {
   "name": "hrenpack-theme-style",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MagIlyasDOMA/hrenpack-theme-style.git"
@@ -12,7 +12,7 @@
     "bootstrap",
     "dark-theme"
   ],
-  "author": "MagIlyasDOMA",
+  "author": "Маг Ильяс DOMA (MagIlyasDOMA)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/MagIlyasDOMA/hrenpack-theme-style/issues"
@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
-    "hrenpack_js": "^3.1.0"
+    "hrenpack_js": "^3.1.0",
+    "magic-snowflakes": "^7.0.2"
   }
 }

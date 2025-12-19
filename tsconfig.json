@@ -28,7 +28,8 @@
 
 	// Современные возможности
 	"useDefineForClassFields": true,
-	"skipLibCheck": true
+	"skipLibCheck": true,
+	"experimentalDecorators": true
   },
-  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts", "hrenpack_js/src"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts", "hrenpack_js/src", "cloned"],
 }

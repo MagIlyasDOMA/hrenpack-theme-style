@@ -39,6 +39,10 @@
 	  "styles.js"
 	]
   },
+  "snowOnly": {
+	"css": [],
+	"js": ["snow.js"]
+  },
   "full": {
 	"css": [
 	  "style.css"
