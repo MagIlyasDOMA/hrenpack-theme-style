@@ -1,9 +1,3 @@
-/*
-* hrenpack-theme-style 3.1.1
-* Copyright (c) 2024-2025, Маг Ильяс DOMA (MagIlyasDOMA)
-* Licensed under MIT (https://github.com/MagIlyasDOMA/hrenpack-theme-style/blob/main/LICENSE)
-*/
-
 "use strict";
 function getButtonColor(button, isHoverOrActive = false) {
     if (button.classList.contains('btn-hren-ahren')) {
