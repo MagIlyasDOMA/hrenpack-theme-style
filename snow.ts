@@ -1,5 +1,5 @@
 /*
-* hrenpack-theme-style 3.1.3
+* hrenpack-theme-style 3.2.0
 * Copyright (c) 2024-2025, Маг Ильяс DOMA (MagIlyasDOMA)
 * Licensed under MIT (https://github.com/MagIlyasDOMA/hrenpack-theme-style/blob/main/LICENSE)
 */
@@ -38,6 +38,28 @@ class SnowManager {
         this.isActive = true;
         this.snow = new Snowflakes(this.initConfig(options));
         this.setupVisibility();
+    }
+
+    static fromScriptDataset() {
+        const script = document.currentScript;
+        let options: SnowOptions = {}
+        if (script) {
+            const dataset = script.dataset;
+            options = {
+                count: parseInt(dataset.count || '50'),
+                color: dataset.color || '#5ecdef',
+                minOpacity: parseFloat(dataset.minOpacity || '0.6'),
+                maxOpacity: parseFloat(dataset.maxOpacity || '1'),
+                minSize: parseFloat(dataset.minSize || '10'),
+                maxSize: parseInt(dataset.maxSize || '25'),
+                rotation: dataset.hasOwnProperty('rotation'),
+                speed: parseInt(dataset.speed || '1'),
+                stop: dataset.hasOwnProperty('stop'),
+                types: parseInt(dataset.types || '6'),
+                zIndex: parseInt(dataset.zIndex || '9999'),
+            }
+        }
+        return new SnowManager(options);
     }
 
     protected initConfig(config: SnowOptions): SnowConfig {
@@ -185,13 +207,6 @@ class SnowManager {
 let snowManager: SnowManager;
 
 document.addEventListener('DOMContentLoaded', () => {
-    snowManager = new SnowManager({
-        color: '#abcdef',
-        zIndex: 50,
-        count: 400,
-        minOpacity: 0.4,
-        maxOpacity: 0.7,
-        speed: 3
-    });
+    snowManager = SnowManager.fromScriptDataset();
     setTimeout(() => {snowManager.speed = 1}, 3000);
 });

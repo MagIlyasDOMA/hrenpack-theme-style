@@ -3,6 +3,7 @@ declare class SnowManager {
     snow?: Snowflakes | null;
     isActive?: boolean;
     constructor(options?: SnowOptions);
+    static fromScriptDataset(): SnowManager;
     protected initConfig(config: SnowOptions): SnowConfig;
     protected setupVisibility(): void;
     pause(): void;
