@@ -1,8 +1,14 @@
 /*
-* hrenpack-theme-style 3.1.1
+* hrenpack-theme-style 3.2.1
 * Copyright (c) 2024-2025, Маг Ильяс DOMA (MagIlyasDOMA)
 * Licensed under MIT (https://github.com/MagIlyasDOMA/hrenpack-theme-style/blob/main/LICENSE)
 */
+
+declare function getCookie(name: string): string | null;
+declare function setCookie(name: string, value: string, days?: number | null, path?: string): void;
+declare function getSystemTheme(): null | string;
+declare const stylesRoot: CSSStyleDeclaration;
+declare function input_form_control_unline(form: HTMLFormElement): void;
 
 declare class Snowflakes {
     constructor(options: any);
@@ -32,6 +38,13 @@ interface SnowConfig {
     autoResize: boolean; // Default: true
 }
 
+interface IsInputFirstOutput {
+    input: Node;
+    label: Node;
+    isFirst: boolean;
+}
+
 type Optional<T> = T | null
 type Nullable<T> = T | null | undefined
 type SnowOptions = Partial<SnowConfig>
+type ButtonArray = NodeListOf<HTMLButtonElement>

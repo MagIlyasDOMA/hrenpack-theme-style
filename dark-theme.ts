@@ -1,18 +1,18 @@
 /*
-* hrenpack-theme-style 3.2.0
+* hrenpack-theme-style 3.2.1
 * Copyright (c) 2024-2025, Маг Ильяс DOMA (MagIlyasDOMA)
 * Licensed under MIT (https://github.com/MagIlyasDOMA/hrenpack-theme-style/blob/main/LICENSE)
 */
 
-declare function getCookie(name: string): string | null;
-declare function setCookie(name: string, value: string, days?: number | null, path?: string): void;
-declare function getScriptSite(script: HTMLScriptElement): string;
-declare function getSystemTheme(): null | string;
+function get_hts_url() {
+    return (document.currentScript as HTMLScriptElement).src
+        .split('/').slice(0, -1).join('/') + '/'
+}
 
 const tt_button: HTMLButtonElement = document.querySelector('#hrenpack-toggle-theme')!;
 const stylesheet: HTMLLinkElement = document.querySelector('#hrenpack-theme-stylesheet')!;
 const cookieTheme = getCookie?.('theme'), lsTheme = localStorage.getItem('theme')
-const theme_url_prefix: string = getScriptSite(document.currentScript as HTMLScriptElement) + '/hrenpack-theme-style/'
+const theme_url_prefix: string = get_hts_url() + '/hrenpack-theme-style/'
 const theme_light = theme_url_prefix + 'style_light.css', theme_dark = theme_url_prefix + 'style_dark.css'
 let currentTheme: string;
 

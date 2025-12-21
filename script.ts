@@ -1,14 +1,8 @@
 /*
-* hrenpack-theme-style 3.2.0
+* hrenpack-theme-style 3.2.1
 * Copyright (c) 2024-2025, Маг Ильяс DOMA (MagIlyasDOMA)
 * Licensed under MIT (https://github.com/MagIlyasDOMA/hrenpack-theme-style/blob/main/LICENSE)
 */
-
-
-
-declare const stylesRoot: CSSStyleDeclaration;
-
-type ButtonArray = NodeListOf<HTMLButtonElement>
 
 function getButtonColor(button: HTMLButtonElement, isHoverOrActive: boolean = false) {
     if (button.classList.contains('btn-hren-ahren')) {
