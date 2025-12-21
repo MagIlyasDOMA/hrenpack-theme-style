@@ -24,6 +24,25 @@
 ```
 > ⚠️ **Важно:** Скрипт должен загружаться синхронно (без `async`/`defer`).
 
+### Варианты инициализации
+
+**Автоматическая (по умолчанию):**
+```html
+<script src="snow.js" data-count="100"></script>
+```
+
+**Ручная (с data-no-init):**
+```html
+<script src="snow.js" data-no-init></script>
+<script>
+// Инициализируем когда нужно
+window.snowManager = new SnowManager({
+    count: 100,
+    color: '#ffffff'
+});
+</script>
+```
+
 ## Справочник API
 ### Класс SnowManager
 #### Конструктор

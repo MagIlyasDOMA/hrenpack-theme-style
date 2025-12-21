@@ -220,5 +220,7 @@ __decorate([
 __decorate([
     SnowProperty
 ], SnowManager.prototype, "autoResize", null);
-const snowManager = SnowManager.fromScriptDataset(document.currentScript);
+let snowManager;
+if (!document.currentScript.dataset.hasOwnProperty('noInit'))
+    snowManager = SnowManager.fromScriptDataset(document.currentScript);
 //# sourceMappingURL=snow.js.map

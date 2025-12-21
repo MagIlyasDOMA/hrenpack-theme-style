@@ -44,5 +44,5 @@ declare class SnowManager {
     get autoResize(): Optional<boolean>;
     set autoResize(value: Optional<boolean>);
 }
-declare const snowManager: SnowManager;
+declare let snowManager: SnowManager;
 //# sourceMappingURL=snow.d.ts.map

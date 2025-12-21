@@ -1,5 +1,5 @@
 /*
-* hrenpack-theme-style 3.2.6
+* hrenpack-theme-style 3.2.7
 * Copyright (c) 2024-2025, Маг Ильяс DOMA (MagIlyasDOMA)
 * Licensed under MIT (https://github.com/MagIlyasDOMA/hrenpack-theme-style/blob/main/LICENSE)
 */
@@ -235,4 +235,7 @@ class SnowManager {
     set autoResize(value: Optional<boolean>) {}
 }
 
-const snowManager = SnowManager.fromScriptDataset(document.currentScript!);
+let snowManager: SnowManager;
+
+if (!document.currentScript!.dataset.hasOwnProperty('noInit'))
+    snowManager = SnowManager.fromScriptDataset(document.currentScript!);
