@@ -6,7 +6,7 @@ function get_hts_url() {
 const tt_button = document.querySelector('#hrenpack-toggle-theme');
 const stylesheet = document.querySelector('#hrenpack-theme-stylesheet');
 const cookieTheme = getCookie?.('theme'), lsTheme = localStorage.getItem('theme');
-const theme_url_prefix = get_hts_url() + '/hrenpack-theme-style/';
+const theme_url_prefix = get_hts_url();
 const theme_light = theme_url_prefix + 'style_light.css', theme_dark = theme_url_prefix + 'style_dark.css';
 let currentTheme;
 if (cookieTheme)
