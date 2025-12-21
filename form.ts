@@ -1,5 +1,5 @@
 /*
-* hrenpack-theme-style 3.2.4
+* hrenpack-theme-style 3.2.5
 * Copyright (c) 2024-2025, Маг Ильяс DOMA (MagIlyasDOMA)
 * Licensed under MIT (https://github.com/MagIlyasDOMA/hrenpack-theme-style/blob/main/LICENSE)
 */

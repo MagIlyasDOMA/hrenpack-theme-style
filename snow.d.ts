@@ -1,4 +1,5 @@
 declare function SnowProperty(target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor): PropertyDescriptor;
+declare function toNumber(input: Nullable<string>, numberType: 'int' | 'float', defaultValue: number): number;
 declare class SnowManager {
     snow?: Snowflakes | null;
     isActive?: boolean;

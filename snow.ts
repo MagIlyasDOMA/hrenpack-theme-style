@@ -1,5 +1,5 @@
 /*
-* hrenpack-theme-style 3.2.4
+* hrenpack-theme-style 3.2.5
 * Copyright (c) 2024-2025, Маг Ильяс DOMA (MagIlyasDOMA)
 * Licensed under MIT (https://github.com/MagIlyasDOMA/hrenpack-theme-style/blob/main/LICENSE)
 */
@@ -29,6 +29,21 @@ function SnowProperty(target: any, propertyKey: string | symbol, descriptor: Pro
     return descriptor;
 }
 
+function toNumber(input: Nullable<string>, numberType: 'int' | 'float', defaultValue: number): number {
+    let output: number;
+    if (!input) return defaultValue;
+    switch (numberType) {
+        case 'int':
+            output = parseInt(input);
+            break;
+        case 'float':
+            output = parseFloat(input);
+            break;
+        default:
+            throw new Error(`Invalid number type ${numberType}`);
+    }
+    return isNaN(output) ? output : defaultValue;
+}
 
 class SnowManager {
     snow?: Snowflakes | null;
@@ -46,17 +61,17 @@ class SnowManager {
         if (script) {
             const dataset = script.dataset;
             options = {
-                count: parseInt(dataset.count || '50'),
+                count: toNumber(dataset.count, 'int', 50),
                 color: dataset.color || '#5ecdef',
-                minOpacity: parseFloat(dataset.minOpacity || '0.6'),
-                maxOpacity: parseFloat(dataset.maxOpacity || '1'),
-                minSize: parseFloat(dataset.minSize || '10'),
-                maxSize: parseInt(dataset.maxSize || '25'),
-                rotation: dataset.hasOwnProperty('rotation'),
-                speed: parseInt(dataset.speed || '1'),
-                stop: dataset.hasOwnProperty('stop'),
-                types: parseInt(dataset.types || '6'),
-                zIndex: parseInt(dataset.zIndex || '9999'),
+                minOpacity: toNumber(dataset.minOpacity, 'float', 0.6),
+                maxOpacity: toNumber(dataset.maxOpacity, 'float', 1),
+                minSize: toNumber(dataset.minSize, 'float', 10),
+                maxSize: toNumber(dataset.maxSize, 'int', 25),
+                rotation: 'rotation' in dataset,
+                speed: toNumber(dataset.speed, 'int', 1),
+                stop: 'stop' in dataset,
+                types: toNumber(dataset.types, 'int', 6),
+                zIndex: toNumber(dataset.zIndex, 'int', 9999),
             }
         }
         return new SnowManager(options);
