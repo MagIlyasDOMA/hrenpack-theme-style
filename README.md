@@ -104,15 +104,80 @@ npm install hrenpack-theme-style
 `.singular-panel`, `.panel`
 Панели для выделения контента.
 
+### Интеграция с magic-snowflakes
+
+Пакет включает интеграцию с библиотекой `magic-snowflakes` для создания анимированного снегопада на странице.
+
+#### Подключение снегопада
+
+```html
+<!-- Подключите скрипт snow.js с настройками через data-атрибуты -->
+<script
+        src="node_modules/hrenpack-theme-style/dist/snow.js"
+        data-count="100"
+        data-color="#ffffff"
+        data-min-opacity="0.3"
+        data-max-opacity="0.9"
+        data-min-size="5"
+        data-max-size="15"
+        data-rotation
+        data-speed="1"
+        data-types="6"
+        data-z-index="9999">
+</script>
+```
+
+#### Доступные настройки через data-атрибуты:
+- `data-count` (число) - количество снежинок (по умолчанию: 50)
+- `data-color` (строка) - цвет снежинок (по умолчанию: "#5ecdef")
+- `data-min-opacity` (число) - минимальная прозрачность (по умолчанию: 0.6)
+- `data-max-opacity` (число) - максимальная прозрачность (по умолчанию: 1)
+- `data-min-size` (число) - минимальный размер (по умолчанию: 10)
+- `data-max-size` (число) - максимальный размер (по умолчанию: 25)
+- `data-rotation` (булевый) - включить вращение снежинок
+- `data-speed` (число) - скорость падения (по умолчанию: 1)
+- `data-stop` (булевый) - не запускать автоматически
+- `data-types` (число) - количество типов снежинок (по умолчанию: 6)
+- `data-z-index` (число) - z-index снежинок (по умолчанию: 9999)
+
+#### Программное управление снегопадом
+После подключения скрипта доступен глобальный объект `snowManager`:
+```javascript
+// Остановить снегопад
+snowManager.pause();
+
+// Запустить снегопад
+snowManager.play();
+
+// Переключить (вкл/выкл)
+snowManager.toggle();
+
+// Изменить параметры
+snowManager.count = 200;
+snowManager.speed = 2;
+snowManager.color = "#ff0000";
+
+// Уничтожить снегопад и освободить ресурсы
+snowManager.destroy();
+```
+
+#### Автоматическое управление
+Снегопад автоматически приостанавливается:
+- Когда пользователь переключается на другую вкладку
+- Когда окно теряет фокус
+- Когда страница скрыта
+
+И автоматически возобновляется при возвращении.
+
 ## Зависимости
-- `hrenpack_js` (^2.0.5) — базовые утилиты для работы с cookies, темами и DOM
+- `hrenpack_js` (^3.1.5) — базовые утилиты для работы с cookies, темами и DOM
+- `magic-snowflakes` (^7.0.2) — библиотека для создания анимированного снегопада
 
 ## Совместимость
 - Поддерживает современные браузеры (ES2020+)
-
 - TypeScript 5.9.3 и выше
-
 - Работает в средах с поддержкой модулей ES
+- **Интеграция с magic-snowflakes 7.0.2+**
 
 ## Разработка
 Для сборки из исходников:
@@ -121,7 +186,7 @@ npm install hrenpack-theme-style
 git clone https://github.com/MagIlyasDOMA/hrenpack-theme-style.git
 cd hrenpack-theme-style
 npm install
-npx tsc
+npm run build  # Компиляция TypeScript в JavaScript
 ```
 
 ## Лицензия

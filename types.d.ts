@@ -1,5 +1,5 @@
 /*
-* hrenpack-theme-style 3.2.3
+* hrenpack-theme-style 3.2.4
 * Copyright (c) 2024-2025, Маг Ильяс DOMA (MagIlyasDOMA)
 * Licensed under MIT (https://github.com/MagIlyasDOMA/hrenpack-theme-style/blob/main/LICENSE)
 */
@@ -12,8 +12,8 @@ declare function input_form_control_unline(form: HTMLFormElement): void;
 
 declare class Snowflakes {
     constructor(options: any);
-    pause(): void;
-    play(): void;
+    stop(): void;
+    start(): void;
     destroy(): void;
     container: HTMLElement;
     params: SnowConfig;

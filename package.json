@@ -1,9 +1,9 @@
 {
   "name": "hrenpack-theme-style",
-  "version": "3.2.3",
+  "version": "3.2.4",
   "scripts": {
     "build": "tsc",
-    "copyright": "add-copyright !(*.d).ts -y 2024-2025 -l -r"
+    "copyright": "add-copyright !(*.d).ts types.d.ts -y 2024-2025 -l -r && tsc"
   },
   "repository": {
     "type": "git",

@@ -1,5 +1,5 @@
 /*
-* hrenpack-theme-style 3.2.3
+* hrenpack-theme-style 3.2.4
 * Copyright (c) 2024-2025, Маг Ильяс DOMA (MagIlyasDOMA)
 * Licensed under MIT (https://github.com/MagIlyasDOMA/hrenpack-theme-style/blob/main/LICENSE)
 */
@@ -93,14 +93,14 @@ class SnowManager {
 
     pause() {
         if (this.snow && this.isActive) {
-            this.snow.pause();
+            this.snow.stop();
             this.isActive = false;
        }
     }
 
     play() {
         if (this.snow && !this.isActive) {
-            this.snow.play();
+            this.snow.start();
             this.isActive = true;
        }
     }
@@ -208,5 +208,4 @@ let snowManager: SnowManager;
 
 document.addEventListener('DOMContentLoaded', () => {
     snowManager = SnowManager.fromScriptDataset();
-    setTimeout(() => {snowManager.speed = 1}, 3000);
 });

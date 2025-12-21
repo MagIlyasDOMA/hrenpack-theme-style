@@ -94,13 +94,13 @@ class SnowManager {
     }
     pause() {
         if (this.snow && this.isActive) {
-            this.snow.pause();
+            this.snow.stop();
             this.isActive = false;
         }
     }
     play() {
         if (this.snow && !this.isActive) {
-            this.snow.play();
+            this.snow.start();
             this.isActive = true;
         }
     }
@@ -202,6 +202,5 @@ __decorate([
 let snowManager;
 document.addEventListener('DOMContentLoaded', () => {
     snowManager = SnowManager.fromScriptDataset();
-    setTimeout(() => { snowManager.speed = 1; }, 3000);
 });
 //# sourceMappingURL=snow.js.map
