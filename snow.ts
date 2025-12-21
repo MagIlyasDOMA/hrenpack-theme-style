@@ -1,5 +1,5 @@
 /*
-* hrenpack-theme-style 3.2.5
+* hrenpack-theme-style 3.2.6
 * Copyright (c) 2024-2025, Маг Ильяс DOMA (MagIlyasDOMA)
 * Licensed under MIT (https://github.com/MagIlyasDOMA/hrenpack-theme-style/blob/main/LICENSE)
 */
@@ -10,20 +10,32 @@ function SnowProperty(target: any, propertyKey: string | symbol, descriptor: Pro
             const instance = this as any;
             if (instance.snow) {
                 return instance.snow.params[propertyKey as keyof SnowConfig];
-           }
+            }
             return null;
-       };
+        };
     }
 
-    if (descriptor.get) {
+    if (descriptor.set) {
         descriptor.set = function(value: any) {
             const instance = this as any;
             if (instance.snow) {
-                instance.snow.params[propertyKey as keyof SnowConfig] = value;
+                // Пересоздаем snow с новыми параметрами
+                const currentParams = instance.snow.params;
+                const newParams = {
+                    ...currentParams,
+                    [propertyKey]: value
+                };
+
+                // Уничтожаем старый экземпляр
+                instance.snow.destroy();
+
+                // Создаем новый с обновленными параметрами
+                instance.snow = new Snowflakes(newParams);
+
                 return;
-           }
+            }
             throw new Error(`Cannot set ${String(propertyKey)} - snow instance destroyed`);
-       };
+        };
     }
 
     return descriptor;
@@ -42,9 +54,14 @@ function toNumber(input: Nullable<string>, numberType: 'int' | 'float', defaultV
         default:
             throw new Error(`Invalid number type ${numberType}`);
     }
-    return isNaN(output) ? output : defaultValue;
+    return !isNaN(output) ? output : defaultValue;
 }
 
+/*
+ * Класс управления снегопадом
+ * Внимание: Изменение параметров через сеттеры приводит к пересозданию
+ * экземпляра Snowflakes, что может вызвать кратковременное мерцание
+ */
 class SnowManager {
     snow?: Snowflakes | null;
     isActive?: boolean;
@@ -55,8 +72,7 @@ class SnowManager {
         this.setupVisibility();
     }
 
-    static fromScriptDataset() {
-        const script = document.currentScript;
+    static fromScriptDataset(script: HTMLOrSVGScriptElement) {
         let options: SnowOptions = {}
         if (script) {
             const dataset = script.dataset;
@@ -219,8 +235,4 @@ class SnowManager {
     set autoResize(value: Optional<boolean>) {}
 }
 
-let snowManager: SnowManager;
-
-document.addEventListener('DOMContentLoaded', () => {
-    snowManager = SnowManager.fromScriptDataset();
-});
+const snowManager = SnowManager.fromScriptDataset(document.currentScript!);

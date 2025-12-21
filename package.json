@@ -1,9 +1,10 @@
 {
   "name": "hrenpack-theme-style",
-  "version": "3.2.5",
+  "version": "3.2.6",
   "scripts": {
     "build": "tsc",
-    "copyright": "add-copyright !(*.d).ts types.d.ts -y 2024-2025 -l -r && tsc"
+    "copyright": "add-copyright !(*.d).ts types.d.ts -y 2024-2025 -l -r && tsc",
+    "test": "http-server -p 8080"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
   "description": "",
   "devDependencies": {
     "@hren/add-copyright": "^1.0.5",
+    "http-server": "^14.1.1",
     "typescript": "^5.9.3"
   },
   "dependencies": {

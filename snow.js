@@ -15,11 +15,17 @@ function SnowProperty(target, propertyKey, descriptor) {
             return null;
         };
     }
-    if (descriptor.get) {
+    if (descriptor.set) {
         descriptor.set = function (value) {
             const instance = this;
             if (instance.snow) {
-                instance.snow.params[propertyKey] = value;
+                const currentParams = instance.snow.params;
+                const newParams = {
+                    ...currentParams,
+                    [propertyKey]: value
+                };
+                instance.snow.destroy();
+                instance.snow = new Snowflakes(newParams);
                 return;
             }
             throw new Error(`Cannot set ${String(propertyKey)} - snow instance destroyed`);
@@ -41,7 +47,7 @@ function toNumber(input, numberType, defaultValue) {
         default:
             throw new Error(`Invalid number type ${numberType}`);
     }
-    return isNaN(output) ? output : defaultValue;
+    return !isNaN(output) ? output : defaultValue;
 }
 class SnowManager {
     constructor(options = {}) {
@@ -61,8 +67,7 @@ class SnowManager {
         this.snow = new Snowflakes(this.initConfig(options));
         this.setupVisibility();
     }
-    static fromScriptDataset() {
-        const script = document.currentScript;
+    static fromScriptDataset(script) {
         let options = {};
         if (script) {
             const dataset = script.dataset;
@@ -215,8 +220,5 @@ __decorate([
 __decorate([
     SnowProperty
 ], SnowManager.prototype, "autoResize", null);
-let snowManager;
-document.addEventListener('DOMContentLoaded', () => {
-    snowManager = SnowManager.fromScriptDataset();
-});
+const snowManager = SnowManager.fromScriptDataset(document.currentScript);
 //# sourceMappingURL=snow.js.map

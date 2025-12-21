@@ -4,7 +4,7 @@ declare class SnowManager {
     snow?: Snowflakes | null;
     isActive?: boolean;
     constructor(options?: SnowOptions);
-    static fromScriptDataset(): SnowManager;
+    static fromScriptDataset(script: HTMLOrSVGScriptElement): SnowManager;
     protected initConfig(config: SnowOptions): SnowConfig;
     protected setupVisibility(): void;
     pause(): void;
@@ -44,5 +44,5 @@ declare class SnowManager {
     get autoResize(): Optional<boolean>;
     set autoResize(value: Optional<boolean>);
 }
-declare let snowManager: SnowManager;
+declare const snowManager: SnowManager;
 //# sourceMappingURL=snow.d.ts.map
