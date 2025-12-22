@@ -23,11 +23,18 @@ if (tt_button) {
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
         localStorage.setItem('theme', newTheme);
         if (stylesheet) {
+            stylesheet.addEventListener('load', () => {
+                currentTheme = newTheme;
+                btn_hren_update();
+                setCookie?.('theme', newTheme);
+            }, { once: true });
             stylesheet.setAttribute('href', newTheme === 'light' ? theme_light : theme_dark);
         }
-        currentTheme = newTheme;
-        btn_hren_update();
-        setCookie?.('theme', newTheme);
+        else {
+            currentTheme = newTheme;
+            btn_hren_update();
+            setCookie?.('theme', newTheme);
+        }
     });
 }
 //# sourceMappingURL=dark-theme.js.map
