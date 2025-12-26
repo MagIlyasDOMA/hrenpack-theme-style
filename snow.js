@@ -53,13 +53,7 @@ function toNumber(input, numberType, defaultValue) {
     return !isNaN(output) ? output : defaultValue;
 }
 class SnowManager {
-    constructor(options = {}, optimize = true) {
-        Object.defineProperty(this, "optimize", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: optimize
-        });
+    constructor(options = {}) {
         Object.defineProperty(this, "snow", {
             enumerable: true,
             configurable: true,
@@ -72,15 +66,22 @@ class SnowManager {
             writable: true,
             value: void 0
         });
+        Object.defineProperty(this, "_optimize", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: true
+        });
         this.isActive = true;
+        this._optimize = options.optimize ?? true;
         this.snow = new Snowflakes(this.initConfig(options));
         this.setupVisibility();
     }
     static fromScriptDataset(script) {
         let options = {};
-        let optimize = true;
         if (script) {
             const dataset = script.dataset;
+            const optimize = !('noOptimize' in dataset);
             options = {
                 count: toNumber(dataset.count, 'int', 50),
                 color: dataset.color || '#5ecdef',
@@ -93,13 +94,13 @@ class SnowManager {
                 stop: 'stop' in dataset,
                 types: toNumber(dataset.types, 'int', 6),
                 zIndex: toNumber(dataset.zIndex, 'int', 9999),
+                optimize: optimize,
             };
-            optimize = !('noOptimize' in dataset);
         }
-        return new SnowManager(options, optimize);
+        return new SnowManager(options);
     }
     initConfig(config) {
-        return {
+        const snowConfig = {
             container: config.container ?? document.body,
             count: config.count ?? 50,
             color: config.color ?? '#5ecdef',
@@ -115,15 +116,27 @@ class SnowManager {
             zIndex: config.zIndex ?? 9999,
             autoResize: config.autoResize ?? true,
         };
+        if (config.width !== undefined)
+            snowConfig.width = config.width;
+        if (config.height !== undefined)
+            snowConfig.height = config.height;
+        return snowConfig;
     }
     setupVisibility() {
         const handleVisibility = () => {
-            if (this.optimize)
+            if (this._optimize) {
                 document.hidden ? this.pause() : this.play();
+            }
         };
         document.addEventListener('visibilitychange', handleVisibility);
-        window.addEventListener('blur', () => this.pause());
-        window.addEventListener('focus', () => this.play());
+        window.addEventListener('blur', () => {
+            if (this._optimize)
+                this.pause();
+        });
+        window.addEventListener('focus', () => {
+            if (this._optimize)
+                this.play();
+        });
     }
     pause() {
         if (this.snow && this.isActive) {
@@ -145,6 +158,12 @@ class SnowManager {
             this.snow.destroy();
             this.snow = null;
         }
+    }
+    get optimize() {
+        return this._optimize;
+    }
+    set optimize(value) {
+        this._optimize = value;
     }
     get container() {
         return this.snow?.container ?? null;

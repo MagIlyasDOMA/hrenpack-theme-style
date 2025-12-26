@@ -1,5 +1,5 @@
 /*
-* hrenpack-theme-style 3.3.2
+* hrenpack-theme-style 3.3.3
 * Copyright (c) 2024-2025, Маг Ильяс DOMA (MagIlyasDOMA)
 * Licensed under MIT (https://github.com/MagIlyasDOMA/hrenpack-theme-style/blob/main/LICENSE)
 */
@@ -36,6 +36,7 @@ interface SnowConfig {
     wind: boolean; // Default: true
     zIndex: number; // Default: 9999
     autoResize: boolean; // Default: true
+    optimize: boolean;
 }
 
 interface IsInputFirstOutput {

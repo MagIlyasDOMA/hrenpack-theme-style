@@ -1,5 +1,5 @@
 /*
-* hrenpack-theme-style 3.3.2
+* hrenpack-theme-style 3.3.3
 * Copyright (c) 2024-2025, Маг Ильяс DOMA (MagIlyasDOMA)
 * Licensed under MIT (https://github.com/MagIlyasDOMA/hrenpack-theme-style/blob/main/LICENSE)
 */
@@ -65,18 +65,22 @@ function toNumber(input: Nullable<string>, numberType: 'int' | 'float', defaultV
 class SnowManager {
     snow?: Snowflakes | null;
     isActive?: boolean;
+    private _optimize: boolean = true; // Внутреннее свойство для оптимизации
 
-    constructor(options: SnowOptions = {}, public optimize: boolean = true) {
+    constructor(options: SnowOptions = {}) {
         this.isActive = true;
+        this._optimize = options.optimize ?? true; // Получаем optimize из options
         this.snow = new Snowflakes(this.initConfig(options));
         this.setupVisibility();
     }
 
     static fromScriptDataset(script: HTMLOrSVGScriptElement) {
         let options: SnowOptions = {}
-        let optimize: boolean = true;
         if (script) {
             const dataset = script.dataset;
+            // Определяем optimize отдельно
+            const optimize = !('noOptimize' in dataset);
+
             options = {
                 count: toNumber(dataset.count, 'int', 50),
                 color: dataset.color || '#5ecdef',
@@ -89,14 +93,15 @@ class SnowManager {
                 stop: 'stop' in dataset,
                 types: toNumber(dataset.types, 'int', 6),
                 zIndex: toNumber(dataset.zIndex, 'int', 9999),
+                optimize: optimize, // Передаем optimize в options
             }
-            optimize = !('noOptimize' in dataset)
         }
-        return new SnowManager(options, optimize);
+        return new SnowManager(options);
     }
 
     protected initConfig(config: SnowOptions): SnowConfig {
-        return {
+        // Создаем конфиг для Snowflakes, исключая optimize
+        const snowConfig: any = {
             container: config.container ?? document.body,
             count: config.count ?? 50,
             color: config.color ?? '#5ecdef',
@@ -111,32 +116,43 @@ class SnowManager {
             wind: config.wind ?? true,
             zIndex: config.zIndex ?? 9999,
             autoResize: config.autoResize ?? true,
-       };
+        };
+
+        // Добавляем width и height только если они заданы
+        if (config.width !== undefined) snowConfig.width = config.width;
+        if (config.height !== undefined) snowConfig.height = config.height;
+
+        return snowConfig;
     }
 
     protected setupVisibility() {
         const handleVisibility = () => {
-            if (this.optimize)
+            if (this._optimize) {
                 document.hidden ? this.pause() : this.play();
+            }
         };
 
         document.addEventListener('visibilitychange', handleVisibility);
-        window.addEventListener('blur', () => this.pause());
-        window.addEventListener('focus', () => this.play());
+        window.addEventListener('blur', () => {
+            if (this._optimize) this.pause();
+        });
+        window.addEventListener('focus', () => {
+            if (this._optimize) this.play();
+        });
     }
 
     pause() {
         if (this.snow && this.isActive) {
             this.snow.stop();
             this.isActive = false;
-       }
+        }
     }
 
     play() {
         if (this.snow && !this.isActive) {
             this.snow.start();
             this.isActive = true;
-       }
+        }
     }
 
     toggle() {
@@ -147,7 +163,16 @@ class SnowManager {
         if (this.snow) {
             this.snow.destroy();
             this.snow = null;
-       }
+        }
+    }
+
+    // Геттер и сеттер для optimize
+    get optimize(): boolean {
+        return this._optimize;
+    }
+
+    set optimize(value: boolean) {
+        this._optimize = value;
     }
 
     get container(): Optional<HTMLElement> {
@@ -158,7 +183,7 @@ class SnowManager {
         if (this.snow) {
             this.snow.container = container;
             return;
-       }
+        }
         throw new Error("Unable to set container - SnowManager is destroyed");
     }
 

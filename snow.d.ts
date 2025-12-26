@@ -1,10 +1,10 @@
 declare function SnowProperty(target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor): PropertyDescriptor;
 declare function toNumber(input: Nullable<string>, numberType: 'int' | 'float', defaultValue: number): number;
 declare class SnowManager {
-    optimize: boolean;
     snow?: Snowflakes | null;
     isActive?: boolean;
-    constructor(options?: SnowOptions, optimize?: boolean);
+    private _optimize;
+    constructor(options?: SnowOptions);
     static fromScriptDataset(script: HTMLOrSVGScriptElement): SnowManager;
     protected initConfig(config: SnowOptions): SnowConfig;
     protected setupVisibility(): void;
@@ -12,6 +12,8 @@ declare class SnowManager {
     play(): void;
     toggle(): void;
     destroy(): void;
+    get optimize(): boolean;
+    set optimize(value: boolean);
     get container(): Optional<HTMLElement>;
     set container(container: HTMLElement);
     get count(): Optional<number>;
