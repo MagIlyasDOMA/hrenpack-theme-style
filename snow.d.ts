@@ -1,9 +1,10 @@
 declare function SnowProperty(target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor): PropertyDescriptor;
 declare function toNumber(input: Nullable<string>, numberType: 'int' | 'float', defaultValue: number): number;
 declare class SnowManager {
+    optimize: boolean;
     snow?: Snowflakes | null;
     isActive?: boolean;
-    constructor(options?: SnowOptions);
+    constructor(options?: SnowOptions, optimize?: boolean);
     static fromScriptDataset(script: HTMLOrSVGScriptElement): SnowManager;
     protected initConfig(config: SnowOptions): SnowConfig;
     protected setupVisibility(): void;
@@ -43,8 +44,6 @@ declare class SnowManager {
     set zIndex(value: Optional<number>);
     get autoResize(): Optional<boolean>;
     set autoResize(value: Optional<boolean>);
-    get optimize(): Optional<boolean>;
-    set optimize(value: Optional<boolean>);
 }
 declare let snowManager: SnowManager;
 //# sourceMappingURL=snow.d.ts.map

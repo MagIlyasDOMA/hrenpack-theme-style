@@ -5,6 +5,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 function SnowProperty(target, propertyKey, descriptor) {
     if (descriptor.get) {
         descriptor.get = function () {
@@ -50,7 +53,13 @@ function toNumber(input, numberType, defaultValue) {
     return !isNaN(output) ? output : defaultValue;
 }
 class SnowManager {
-    constructor(options = {}) {
+    constructor(options = {}, optimize = true) {
+        Object.defineProperty(this, "optimize", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: optimize
+        });
         Object.defineProperty(this, "snow", {
             enumerable: true,
             configurable: true,
@@ -69,6 +78,7 @@ class SnowManager {
     }
     static fromScriptDataset(script) {
         let options = {};
+        let optimize = true;
         if (script) {
             const dataset = script.dataset;
             options = {
@@ -83,10 +93,10 @@ class SnowManager {
                 stop: 'stop' in dataset,
                 types: toNumber(dataset.types, 'int', 6),
                 zIndex: toNumber(dataset.zIndex, 'int', 9999),
-                optimize: !('noOptimize' in dataset),
             };
+            optimize = !('noOptimize' in dataset);
         }
-        return new SnowManager(options);
+        return new SnowManager(options, optimize);
     }
     initConfig(config) {
         return {
@@ -104,7 +114,6 @@ class SnowManager {
             wind: config.wind ?? true,
             zIndex: config.zIndex ?? 9999,
             autoResize: config.autoResize ?? true,
-            optimize: config.optimize ?? true,
         };
     }
     setupVisibility() {
@@ -177,57 +186,82 @@ class SnowManager {
     set zIndex(value) { }
     get autoResize() { return null; }
     set autoResize(value) { }
-    get optimize() { return null; }
-    set optimize(value) { }
 }
 __decorate([
-    SnowProperty
+    SnowProperty,
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [Object])
 ], SnowManager.prototype, "count", null);
 __decorate([
-    SnowProperty
+    SnowProperty,
+    __metadata("design:type", String),
+    __metadata("design:paramtypes", [String])
 ], SnowManager.prototype, "color", null);
 __decorate([
-    SnowProperty
+    SnowProperty,
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [Object])
 ], SnowManager.prototype, "minOpacity", null);
 __decorate([
-    SnowProperty
+    SnowProperty,
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [Object])
 ], SnowManager.prototype, "maxOpacity", null);
 __decorate([
-    SnowProperty
+    SnowProperty,
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [Object])
 ], SnowManager.prototype, "minSize", null);
 __decorate([
-    SnowProperty
+    SnowProperty,
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [Object])
 ], SnowManager.prototype, "maxSize", null);
 __decorate([
-    SnowProperty
+    SnowProperty,
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [Object])
 ], SnowManager.prototype, "rotation", null);
 __decorate([
-    SnowProperty
+    SnowProperty,
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [Object])
 ], SnowManager.prototype, "speed", null);
 __decorate([
-    SnowProperty
+    SnowProperty,
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [Object])
 ], SnowManager.prototype, "stop", null);
 __decorate([
-    SnowProperty
+    SnowProperty,
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [Object])
 ], SnowManager.prototype, "types", null);
 __decorate([
-    SnowProperty
+    SnowProperty,
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [Object])
 ], SnowManager.prototype, "width", null);
 __decorate([
-    SnowProperty
+    SnowProperty,
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [Object])
 ], SnowManager.prototype, "height", null);
 __decorate([
-    SnowProperty
+    SnowProperty,
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [Object])
 ], SnowManager.prototype, "wind", null);
 __decorate([
-    SnowProperty
+    SnowProperty,
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [Object])
 ], SnowManager.prototype, "zIndex", null);
 __decorate([
-    SnowProperty
+    SnowProperty,
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [Object])
 ], SnowManager.prototype, "autoResize", null);
-__decorate([
-    SnowProperty
-], SnowManager.prototype, "optimize", null);
 let snowManager;
 if (!document.currentScript.dataset.hasOwnProperty('noInit'))
     snowManager = SnowManager.fromScriptDataset(document.currentScript);

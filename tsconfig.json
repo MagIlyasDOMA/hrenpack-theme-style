@@ -17,6 +17,7 @@
 	"esModuleInterop": true,
 	"allowSyntheticDefaultImports": true,
 	"forceConsistentCasingInFileNames": true,
+	"emitDecoratorMetadata": true,
 
 	// Output - КОМПИЛЯЦИЯ В ТУ ЖЕ ДИРЕКТОРИЮ
 	"declaration": true,

@@ -66,7 +66,7 @@ class SnowManager {
     snow?: Snowflakes | null;
     isActive?: boolean;
 
-    constructor(options: SnowOptions = {}) {
+    constructor(options: SnowOptions = {}, public optimize: boolean = true) {
         this.isActive = true;
         this.snow = new Snowflakes(this.initConfig(options));
         this.setupVisibility();
@@ -74,6 +74,7 @@ class SnowManager {
 
     static fromScriptDataset(script: HTMLOrSVGScriptElement) {
         let options: SnowOptions = {}
+        let optimize: boolean = true;
         if (script) {
             const dataset = script.dataset;
             options = {
@@ -88,10 +89,10 @@ class SnowManager {
                 stop: 'stop' in dataset,
                 types: toNumber(dataset.types, 'int', 6),
                 zIndex: toNumber(dataset.zIndex, 'int', 9999),
-                optimize: !('noOptimize' in dataset),
             }
+            optimize = !('noOptimize' in dataset)
         }
-        return new SnowManager(options);
+        return new SnowManager(options, optimize);
     }
 
     protected initConfig(config: SnowOptions): SnowConfig {
@@ -110,7 +111,6 @@ class SnowManager {
             wind: config.wind ?? true,
             zIndex: config.zIndex ?? 9999,
             autoResize: config.autoResize ?? true,
-            optimize: config.optimize ?? true,
        };
     }
 
@@ -236,11 +236,6 @@ class SnowManager {
     @SnowProperty
     get autoResize(): Optional<boolean> {return null;}
     set autoResize(value: Optional<boolean>) {}
-
-    // optimize
-    @SnowProperty
-    get optimize(): Optional<boolean> {return null;}
-    set optimize(value: Optional<boolean>) {}
 }
 
 let snowManager: SnowManager;
