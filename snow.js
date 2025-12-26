@@ -83,7 +83,7 @@ class SnowManager {
                 stop: 'stop' in dataset,
                 types: toNumber(dataset.types, 'int', 6),
                 zIndex: toNumber(dataset.zIndex, 'int', 9999),
-                optimize: 'noOptimize' in dataset,
+                optimize: !('noOptimize' in dataset),
             };
         }
         return new SnowManager(options);
