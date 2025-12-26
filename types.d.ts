@@ -36,6 +36,7 @@ interface SnowConfig {
     wind: boolean; // Default: true
     zIndex: number; // Default: 9999
     autoResize: boolean; // Default: true
+    optimize: boolean;
 }
 
 interface IsInputFirstOutput {

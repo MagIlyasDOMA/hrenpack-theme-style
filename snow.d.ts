@@ -43,6 +43,8 @@ declare class SnowManager {
     set zIndex(value: Optional<number>);
     get autoResize(): Optional<boolean>;
     set autoResize(value: Optional<boolean>);
+    get optimize(): Optional<boolean>;
+    set optimize(value: Optional<boolean>);
 }
 declare let snowManager: SnowManager;
 //# sourceMappingURL=snow.d.ts.map

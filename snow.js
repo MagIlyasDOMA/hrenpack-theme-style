@@ -83,6 +83,7 @@ class SnowManager {
                 stop: 'stop' in dataset,
                 types: toNumber(dataset.types, 'int', 6),
                 zIndex: toNumber(dataset.zIndex, 'int', 9999),
+                optimize: 'noOptimize' in dataset,
             };
         }
         return new SnowManager(options);
@@ -103,11 +104,13 @@ class SnowManager {
             wind: config.wind ?? true,
             zIndex: config.zIndex ?? 9999,
             autoResize: config.autoResize ?? true,
+            optimize: config.optimize ?? true,
         };
     }
     setupVisibility() {
         const handleVisibility = () => {
-            document.hidden ? this.pause() : this.play();
+            if (this.optimize)
+                document.hidden ? this.pause() : this.play();
         };
         document.addEventListener('visibilitychange', handleVisibility);
         window.addEventListener('blur', () => this.pause());
@@ -174,6 +177,8 @@ class SnowManager {
     set zIndex(value) { }
     get autoResize() { return null; }
     set autoResize(value) { }
+    get optimize() { return null; }
+    set optimize(value) { }
 }
 __decorate([
     SnowProperty
@@ -220,6 +225,9 @@ __decorate([
 __decorate([
     SnowProperty
 ], SnowManager.prototype, "autoResize", null);
+__decorate([
+    SnowProperty
+], SnowManager.prototype, "optimize", null);
 let snowManager;
 if (!document.currentScript.dataset.hasOwnProperty('noInit'))
     snowManager = SnowManager.fromScriptDataset(document.currentScript);

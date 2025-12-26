@@ -19,7 +19,8 @@
         data-max-size="15"
         data-speed="2"
         data-rotation
-        data-z-index="9999">
+        data-z-index="9999"
+        data-no-optimize>
 </script>
 ```
 > ⚠️ **Важно:** Скрипт должен загружаться синхронно (без `async`/`defer`).
@@ -72,6 +73,7 @@ new SnowManager(options?: SnowOptions)
 - `rotation` - Включить вращение
 - `wind` - Включить эффект ветра
 - `zIndex` - CSS z-index
+- `optimize` - Включит/выключить оптимизацию (отключение анимации, если вкладка неактивна)
 
 ## События
 Снегопад автоматически реагирует на:
@@ -99,7 +101,45 @@ new SnowManager(options?: SnowOptions)
 | Программное API | Все параметры, включая wind, autoResize, container   | В любой момент времени |
 
 
-## Примечания по производительности
+## Безопасность и производительность
+
+#### Защита от XSS
+При использовании data-атрибутов все значения проходят валидацию:
+- Числовые параметры проверяются на корректность
+- Строковые значения (color) санитизируются
+- Булевые параметры обрабатываются безопасно
+
+#### Оптимальные настройки для разных устройств:
+| Устройство | count | maxSize | speed | optimize |
+|------------|-------|---------|-------|----------|
+| Десктоп (мощный) | 150 | 25 | 2 | true |
+| Десктоп (обычный) | 80 | 20 | 1 | true |
+| Планшет | 60 | 15 | 1 | true |
+| Мобильный | 40 | 12 | 1 | true |
+| Старые устройства | 20 | 10 | 0.5 | true |
+
+#### Мониторинг производительности:
+```javascript
+// Проверка FPS снегопада
+let frameCount = 0;
+let lastTime = performance.now();
+
+function monitorPerformance() {
+    frameCount++;
+    const currentTime = performance.now();
+    if (currentTime - lastTime >= 1000) {
+        const fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
+        console.log(`Snow FPS: ${fps}`);
+        if (fps < 30) {
+            console.warn('Низкий FPS. Рекомендуется уменьшить количество снежинок.');
+        }
+        frameCount = 0;
+        lastTime = currentTime;
+    }
+    requestAnimationFrame(monitorPerformance);
+}
+monitorPerformance();
+```
 
 ### Рекомендации по настройке
 | Параметр     | Рекомендуемое значение               | Влияние на производительность          |

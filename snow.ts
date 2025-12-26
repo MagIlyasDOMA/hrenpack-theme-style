@@ -88,6 +88,7 @@ class SnowManager {
                 stop: 'stop' in dataset,
                 types: toNumber(dataset.types, 'int', 6),
                 zIndex: toNumber(dataset.zIndex, 'int', 9999),
+                optimize: 'noOptimize' !in dataset,
             }
         }
         return new SnowManager(options);
@@ -109,13 +110,15 @@ class SnowManager {
             wind: config.wind ?? true,
             zIndex: config.zIndex ?? 9999,
             autoResize: config.autoResize ?? true,
+            optimize: config.optimize ?? true,
        };
     }
 
     protected setupVisibility() {
         const handleVisibility = () => {
-            document.hidden ? this.pause() : this.play();
-       };
+            if (this.optimize)
+                document.hidden ? this.pause() : this.play();
+        };
 
         document.addEventListener('visibilitychange', handleVisibility);
         window.addEventListener('blur', () => this.pause());
@@ -233,6 +236,11 @@ class SnowManager {
     @SnowProperty
     get autoResize(): Optional<boolean> {return null;}
     set autoResize(value: Optional<boolean>) {}
+
+    // optimize
+    @SnowProperty
+    get optimize(): Optional<boolean> {return null;}
+    set optimize(value: Optional<boolean>) {}
 }
 
 let snowManager: SnowManager;
