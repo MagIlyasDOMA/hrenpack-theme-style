@@ -18,23 +18,24 @@ else
 if (stylesheet) {
     stylesheet.setAttribute('href', currentTheme === 'light' ? theme_light : theme_dark);
 }
-if (tt_button) {
-    tt_button.addEventListener('click', () => {
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        localStorage.setItem('theme', newTheme);
-        if (stylesheet) {
-            stylesheet.addEventListener('load', () => {
-                currentTheme = newTheme;
-                btn_hren_update();
-                setCookie?.('theme', newTheme);
-            }, { once: true });
-            stylesheet.setAttribute('href', newTheme === 'light' ? theme_light : theme_dark);
-        }
-        else {
+function toggleTheme() {
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    localStorage.setItem('theme', newTheme);
+    if (stylesheet) {
+        stylesheet.addEventListener('load', () => {
             currentTheme = newTheme;
             btn_hren_update();
             setCookie?.('theme', newTheme);
-        }
-    });
+        }, { once: true });
+        stylesheet.setAttribute('href', newTheme === 'light' ? theme_light : theme_dark);
+    }
+    else {
+        currentTheme = newTheme;
+        btn_hren_update();
+        setCookie?.('theme', newTheme);
+    }
+}
+if (tt_button) {
+    tt_button.addEventListener('click', toggleTheme);
 }
 //# sourceMappingURL=dark-theme.js.map
