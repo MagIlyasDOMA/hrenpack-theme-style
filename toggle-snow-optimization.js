@@ -10,8 +10,10 @@ else
     snowOptimization = 'on';
 function toggleSnowOptimization() {
     const newSO = snowOptimization === 'on' ? 'off' : 'on';
+    snowOptimization = newSO;
     localStorage.setItem('snowOptimization', newSO);
     setCookie('snowOptimization', newSO);
+    snowManager.optimize = snowOptimization === 'on';
 }
 if (snow_optimization_button) {
     snow_optimization_button.addEventListener('click', toggleSnowOptimization);

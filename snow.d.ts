@@ -6,12 +6,13 @@ declare class SnowManager {
     private _optimize;
     constructor(options?: SnowOptions);
     static fromScriptDataset(script: HTMLOrSVGScriptElement): SnowManager;
-    protected initConfig(config: SnowOptions): SnowConfig;
+    protected initConfig(config: any): SnowConfig;
     protected setupVisibility(): void;
     pause(): void;
     play(): void;
     toggle(): void;
     destroy(): void;
+    restore(): void;
     get optimize(): boolean;
     set optimize(value: boolean);
     get container(): Optional<HTMLElement>;

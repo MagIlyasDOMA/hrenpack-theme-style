@@ -1,5 +1,4 @@
-const snow_button: Optional<HTMLButtonElement> = document.querySelector(
-    '#hrenpack-snow-optimization-on-off')
+const snow_button: Optional<HTMLButtonElement> = document.querySelector('#hrenpack-snow-on-off')
 
 const cookieSnow: OptionalOnOffType = getCookie('snow') as OptionalOnOffType,
     lsSnow: OptionalOnOffType = localStorage.getItem('snow') as OptionalOnOffType;
