@@ -3,6 +3,7 @@ declare function setCookie(name: string, value: string, days?: number | null, pa
 declare function getSystemTheme(): null | string;
 declare const stylesRoot: CSSStyleDeclaration;
 declare function input_form_control_unline(form: HTMLFormElement): void;
+declare type OnOffType = 'on' | 'off'
 
 declare class Snowflakes {
     constructor(options: any);
@@ -39,7 +40,8 @@ interface IsInputFirstOutput {
     isFirst: boolean;
 }
 
-type Optional<T> = T | null
-type Nullable<T> = T | null | undefined
-type SnowOptions = Partial<SnowConfig>
-type ButtonArray = NodeListOf<HTMLButtonElement>
+type Optional<T> = T | null;
+type Nullable<T> = T | null | undefined;
+type SnowOptions = Partial<SnowConfig>;
+type ButtonArray = NodeListOf<HTMLButtonElement>;
+type OptionalOnOffType = Optional<OnOffType>;

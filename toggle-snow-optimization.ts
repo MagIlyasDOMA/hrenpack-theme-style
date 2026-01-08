@@ -1,6 +1,3 @@
-declare type OnOffType = 'on' | 'off'
-type OptionalOnOffType = Optional<OnOffType>
-
 const snow_optimization_button: Optional<HTMLButtonElement> = document.querySelector(
     '#hrenpack-snow-optimization-on-off')
 
@@ -17,8 +14,10 @@ else snowOptimization = 'on'
 
 function toggleSnowOptimization() {
     const newSO = snowOptimization === 'on' ? 'off' : 'on';
+    snowOptimization = newSO;
     localStorage.setItem('snowOptimization', newSO);
     setCookie('snowOptimization', newSO);
+    snowManager.optimize = snowOptimization === 'on'
 }
 
 

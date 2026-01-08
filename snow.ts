@@ -87,13 +87,13 @@ class SnowManager {
                 stop: 'stop' in dataset,
                 types: toNumber(dataset.types, 'int', 6),
                 zIndex: toNumber(dataset.zIndex, 'int', 9999),
-                optimize: optimize, // Передаем optimize в options
+                optimize: optimize
             }
         }
         return new SnowManager(options);
     }
 
-    protected initConfig(config: SnowOptions): SnowConfig {
+    protected initConfig(config: any): SnowConfig {
         // Создаем конфиг для Snowflakes, исключая optimize
         const snowConfig: any = {
             container: config.container ?? document.body,
@@ -157,6 +157,27 @@ class SnowManager {
         if (this.snow) {
             this.snow.destroy();
             this.snow = null;
+        }
+    }
+
+    restore() {
+        if (!this.snow) {
+            this.snow = new Snowflakes(this.initConfig({
+                container: this.container,
+                count: this.count,
+                color: this.color,
+                minOpacity: this.minOpacity,
+                maxOpacity: this.maxOpacity,
+                minSize: this.minSize,
+                maxSize: this.maxSize,
+                rotation: this.rotation,
+                speed: this.speed,
+                stop: this.stop,
+                types: this.types,
+                wind: this.wind,
+                zIndex: this.zIndex,
+                autoResize: this.autoResize
+            }))
         }
     }
 
