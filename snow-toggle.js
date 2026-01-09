@@ -13,7 +13,11 @@ function toggleSnow() {
     snowEnabled = newSO;
     localStorage.setItem('snow', newSO);
     setCookie('snow', newSO);
-    if (snowEnabled === 'on' && snowManager) {
+    if (snowManager) {
+        if (snowEnabled === 'on')
+            snowManager.restore();
+        else
+            snowManager.destroy();
     }
 }
 if (snow_button)
