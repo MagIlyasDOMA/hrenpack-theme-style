@@ -21,6 +21,4 @@ function toggleSnow() {
     }
 }
 
-if (snow_button) {
-    snow_button.addEventListener('click', toggleSnow)
-}
+if (snow_button) snow_button.addEventListener('click', toggleSnow)

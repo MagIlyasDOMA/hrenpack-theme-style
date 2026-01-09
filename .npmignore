@@ -38,3 +38,6 @@ Thumbs.db
 
 # Файлы API для GitHub
 config-api.json
+
+# Рабочие файлы
+snow-on-off/
