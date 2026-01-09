@@ -16,7 +16,6 @@ function toggleSnow() {
     if (snowEnabled === 'on' && snowManager) {
     }
 }
-if (snow_button) {
+if (snow_button)
     snow_button.addEventListener('click', toggleSnow);
-}
 //# sourceMappingURL=snow-toggle.js.map
