@@ -41,3 +41,4 @@ config-api.json
 
 # Рабочие файлы
 snow-on-off/
+/res/
