@@ -79,8 +79,8 @@ footer {
 }
 
 .btn-hren {
-    background: var(--hrenpack-foreground);
-    color: var(--hrenpack-background);
+    background: var(--hrenpack-button-background);
+    color: var(--hrenpack-button-foreground);
 }
 
 .btn-hren:hover {
