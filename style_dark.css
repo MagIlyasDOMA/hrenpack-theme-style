@@ -2,8 +2,9 @@
 @import url('style.css');
 
 :root {
-    --hrenpack-background: #121212;
+    --hrenpack-background: #202020;
     --hrenpack-foreground: #ededed;
+    --hrenpack-button-background: #121212;
     --hrenpack-fcu-grad: #612;
     --hrenpack-background-er: #222;
     --hrenpack-foreground-er: #aaa;
