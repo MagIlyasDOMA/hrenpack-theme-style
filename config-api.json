@@ -32,7 +32,8 @@
 	"js": [
 	  "script.js",
 	  "input-reversed.js",
-	  "form.js"
+	  "form.js",
+	  "styles.js"
 	],
 	"dependencies": [
 	  "auto.js",
