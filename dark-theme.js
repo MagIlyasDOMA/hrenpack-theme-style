@@ -21,7 +21,7 @@ else
 if (stylesheet) {
     stylesheet.setAttribute('href', currentTheme === 'light' ? theme_light : theme_dark);
 }
-function setButtonIcon() {
+function setButtonIcon(first = false) {
     if (useIcon) {
         let icon = tt_button.querySelector('img');
         if (!icon) {
@@ -29,7 +29,10 @@ function setButtonIcon() {
             tt_button.innerHTML = '';
             tt_button.appendChild(icon);
         }
-        icon.src = currentTheme === 'light' ? darkIcon : lightIcon;
+        if (!first)
+            icon.src = currentTheme === 'light' ? darkIcon : lightIcon;
+        else
+            icon.src = currentTheme === 'light' ? lightIcon : darkIcon;
     }
 }
 function toggleTheme() {
@@ -53,5 +56,5 @@ function toggleTheme() {
 if (tt_button) {
     tt_button.addEventListener('click', toggleTheme);
 }
-document.addEventListener('DOMContentLoaded', setButtonIcon);
+document.addEventListener('DOMContentLoaded', () => { setButtonIcon(true); });
 //# sourceMappingURL=dark-theme.js.map

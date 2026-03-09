@@ -8,6 +8,6 @@ declare const theme_light: string, theme_dark: string;
 declare let currentTheme: string;
 declare const lightIcon = "https://cdn.jsdelivr.net/npm/hrenpack-theme-style@3.8.0/toggle-theme/light.svg";
 declare const darkIcon = "https://cdn.jsdelivr.net/npm/hrenpack-theme-style@3.8.0/toggle-theme/dark.svg";
-declare function setButtonIcon(): void;
+declare function setButtonIcon(first?: boolean): void;
 declare function toggleTheme(): void;
 //# sourceMappingURL=dark-theme.d.ts.map
