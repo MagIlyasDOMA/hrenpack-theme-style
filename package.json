@@ -1,10 +1,8 @@
 {
   "name": "hrenpack-theme-style",
-  "version": "3.8.4",
+  "version": "3.8.5",
   "scripts": {
-    "build": "tsc",
-    "copyright": "add-copyright !(*.d).ts types.d.ts -y 2024-2025 -l -r && tsc",
-    "test": "http-server -p 8080"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -25,12 +23,11 @@
   "homepage": "https://github.com/MagIlyasDOMA/hrenpack-theme-style#readme",
   "description": "",
   "devDependencies": {
-    "http-server": "^14.1.1",
     "typescript": "^5.9.3"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
-    "hrenpack_js": "^3.4.4",
+    "hrenpack_js": "^3.4.6",
     "magic-snowflakes": "^7.0.2"
   }
 }
