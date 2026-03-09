@@ -3,12 +3,15 @@ function get_hts_url() {
     return document.currentScript.src
         .split('/').slice(0, -1).join('/') + '/';
 }
+var useIcon = false;
 const tt_button = document.querySelector('#hrenpack-toggle-theme');
 const stylesheet = document.querySelector('#hrenpack-theme-stylesheet');
 const cookieTheme = getCookie?.('theme'), lsTheme = localStorage.getItem('theme');
 const theme_url_prefix = get_hts_url();
 const theme_light = theme_url_prefix + 'style_light.css', theme_dark = theme_url_prefix + 'style_dark.css';
 let currentTheme;
+const lightIcon = 'https://cdn.jsdelivr.net/npm/hrenpack-theme-style@3.8.0/toggle-theme/light.svg';
+const darkIcon = 'https://cdn.jsdelivr.net/npm/hrenpack-theme-style@3.8.0/toggle-theme/dark.svg';
 if (cookieTheme)
     currentTheme = cookieTheme;
 else if (lsTheme)
@@ -33,6 +36,15 @@ function toggleTheme() {
         currentTheme = newTheme;
         btn_hren_update();
         setCookie?.('theme', newTheme);
+    }
+    if (useIcon) {
+        let icon = tt_button.querySelector('img');
+        if (!icon) {
+            icon = document.createElement('img');
+            tt_button.innerHTML = '';
+            tt_button.appendChild(icon);
+        }
+        icon.src = currentTheme === 'light' ? lightIcon : darkIcon;
     }
 }
 if (tt_button) {

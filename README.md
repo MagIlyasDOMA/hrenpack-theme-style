@@ -75,7 +75,7 @@ npm install hrenpack-theme-style
 
 - `--hrenpack-foreground` — цвет текста
 
-- `--hrenpack-a-hover-coloк` — цвет ссылок при наведении
+- `--hrenpack-a-hover-color` — цвет ссылок при наведении
 
 - `--hrenpack-button-hover-color` — цвет кнопок при наведении
 
